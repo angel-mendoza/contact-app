@@ -4,7 +4,9 @@
   "description": "this application is a test to measure my knowledge in react",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/angel-mendoza/contact-app/issues"
   },
-  "homepage": "https://github.com/angel-mendoza/contact-app#readme"
+  "homepage": "https://github.com/angel-mendoza/contact-app#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0"
+  }
 }
