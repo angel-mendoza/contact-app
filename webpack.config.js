@@ -12,7 +12,7 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', 'jsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, 'src/')
     }
@@ -57,7 +57,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new Dotenv()
+    new Dotenv({
+      path: './.env',
+      systemvars: true
+    })
   ],
   devServer: {
     historyApiFallback: true,

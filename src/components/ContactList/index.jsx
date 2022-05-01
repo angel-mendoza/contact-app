@@ -37,9 +37,9 @@ const ContactList = ({ contacts }) => {
       }
     >
       {
-        contacts.map((contact) => (
+        contacts.map((contact, index) => (
           <>
-            <ListItemButton key={`contact-${contact._id}`} onClick={() => handleClick(contact._id)} >
+            <ListItemButton key={index} onClick={() => handleClick(contact._id)} >
               <ListItemIcon>
                 <AccountCircleIcon />
               </ListItemIcon>

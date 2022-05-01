@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from '@mui/material/Grid'
 
-import NavbarApp from '../components/navbar/index.jsx'
+import NavbarApp from '../components/navbar'
 
 const LayoutApp = ({ children }) => {
   return (
