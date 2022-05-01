@@ -1,3 +1,4 @@
+// import React, { lazy } from 'react'
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -13,6 +14,11 @@ const App = () => {
   <BrowserRouter>
     <Layout>
       <Routes>
+        {/* {
+          routes.map((route, index) => (
+            <Route key={index} exact={route.exact} path={route.path} element={<route.component />} />
+          ))
+        } */}
         <Route exact path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -20,5 +26,18 @@ const App = () => {
   </BrowserRouter>
   )
 }
+
+// const routes = [
+//   {
+//     exact: true,
+//     path: '/',
+//     component: lazy(() => import('@/pages/Home/index.jsx'))
+//   },
+//   {
+//     exact: false,
+//     path: '*',
+//     component: lazy(() => import('@/pages/NotFound/index.jsx'))
+//   }
+// ]
 
 export default App
