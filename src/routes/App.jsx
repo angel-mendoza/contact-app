@@ -2,6 +2,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import { Provider } from 'react-redux'
+import store from '@/store'
+
 import Layout from '@/containers/Layout.jsx'
 
 import Home from '@/views/Home'
@@ -11,19 +14,21 @@ import '@/styles/Global.scss'
 
 const App = () => {
   return (
-  <BrowserRouter>
-    <Layout>
-      <Routes>
-        {/* {
-          routes.map((route, index) => (
-            <Route key={index} exact={route.exact} path={route.path} element={<route.component />} />
-          ))
-        } */}
-        <Route exact path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          {/* {
+            routes.map((route, index) => (
+              <Route key={index} exact={route.exact} path={route.path} element={<route.component />} />
+            ))
+          } */}
+          <Route exact path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  </Provider>
   )
 }
 
