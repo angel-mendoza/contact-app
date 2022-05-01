@@ -3,6 +3,7 @@ import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 
 import ContactList from '@/components/ContactList'
+import ContactItem from '@/components/ContactItem'
 import PageComponent from '@/components/PageComponent'
 
 import API from '@/utils/axios'
@@ -27,7 +28,13 @@ const HomePage = () => {
 
   return (
     <PageComponent title="My contact list">
-      <ContactList contacts={stateContact.results} />
+      <ContactList contacts={stateContact}>
+        {
+          stateContact.results.map(contact => (
+            <ContactItem key={contact._id} contact={contact} />
+          ))
+        }
+      </ContactList>
       <Fab className='fab' color="primary" aria-label="add">
         <AddIcon />
       </Fab>
