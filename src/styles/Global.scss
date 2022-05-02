@@ -11,3 +11,10 @@ html, body, #root {
 #layout-app{
   padding: 0 20px;
 }
+
+.pagination{
+  margin-top: 10px;
+  ul{
+    justify-content: center;
+  }
+}
