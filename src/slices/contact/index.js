@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import API from '@/utils/axios'
+import API from '@/utils/axios'
 
 const INITIAL_STATE = {
   count: 0,
@@ -39,9 +39,8 @@ export const reducer = slice.reducer
 
 export const getContact = (params) => async (dispatch) => {
   try {
-    // const response = await API.get(`/contacts?page=${params}`)
-    // dispatch(slice.actions.setContacts(response.data))
-    dispatch(slice.actions.setContacts(INITIAL_STATE))
+    const response = await API.get(`/contacts?page=${params}`)
+    dispatch(slice.actions.setContacts(response.data))
   } catch (err) {
     dispatch(slice.actions.setError(err))
   }
