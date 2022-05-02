@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-return-assign': 'off',
-    'multiline-ternary': 'off'
+    'multiline-ternary': 'off',
+    'no-unneeded-ternary': 'off'
   }
 }

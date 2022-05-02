@@ -1,5 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 import {
   Box,
@@ -13,30 +14,19 @@ import {
 import '@/styles/ContactCreateForm.scss'
 
 const ContactCreateForm = () => {
-  const form = useRef(null)
   const theme = useTheme()
   const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const submit = event => {
-    event.preventDefault()
-    const formData = new FormData(form.current)
-    const data = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      phone: formData.get('phone')
-    }
-    console.log(data)
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const onSubmit = data => console.log(data)
 
   return (
     <div id='contact-create-form'>
       <Box
-        onSubmit={submit}
+        onSubmit={handleSubmit(onSubmit)}
         component="form"
         sx={{ maxWidth: '100%' }}
         noValidate
-        ref={form}
         autoComplete="off"
       >
         <Typography
@@ -47,32 +37,68 @@ const ContactCreateForm = () => {
         </Typography>
         <div>
           <TextField
+            error={ errors.firstName ? true : false }
             className='app-input'
             fullWidth
             id="input-first-name"
             label="Fisrt Name"
             name='firstName'
+            helperText={ errors.firstName?.message }
+            {...register('firstName', {
+              required: {
+                value: true,
+                message: 'The first name is required'
+              }
+            })}
           />
           <TextField
+            error={ errors.lastName ? true : false }
             className='app-input'
             fullWidth
             id="input-last-name"
             label="Last Name"
             name='lastName'
+            helperText={ errors.lastName?.message }
+            {...register('lastName', {
+              required: {
+                value: true,
+                message: 'The last name is required'
+              }
+            })}
           />
           <TextField
+            error={ errors.email ? true : false }
             className='app-input'
             fullWidth
             id="input-email"
             label="Email"
             name='email'
+            helperText={ errors.email?.message }
+            {...register('email', {
+              required: {
+                value: true,
+                message: 'The email is required'
+              },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'The format is not correct'
+              }
+            })}
           />
           <TextField
+            error={ errors.phone ? true : false }
             className='app-input'
             fullWidth
             id="input-phone"
             label="Phone Number"
             name='phone'
+            helperText={ errors.phone?.message }
+            {...register('phone', {
+              required: {
+                value: true,
+                message: 'The phone name is required'
+              }
+            })}
           />
         </div>
         <Button
