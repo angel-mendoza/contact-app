@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import ContactSkeleton from '@/components/ContactSkeleton'
+import ContactError from '@/components/ContactError'
 import { generateRandonArray } from '@/utils/randomElement'
 
 const ContactList = (props) => {
@@ -22,10 +23,22 @@ const ContactList = (props) => {
       )
     }
   }
+
+  const showError = () => {
+    if (!props.contacts.loading && props.contacts.error) {
+      return (
+        <Grid item xs={12}>
+          <ContactError />
+        </Grid>
+      )
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         { loadingSkeleton() }
+        { showError() }
         { props.children }
       </Grid>
     </Box>
