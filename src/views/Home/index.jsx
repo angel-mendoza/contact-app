@@ -8,9 +8,10 @@ import AddIcon from '@mui/icons-material/Add'
 import ContactList from '@/components/ContactList'
 import ContactItem from '@/components/ContactItem'
 import PageComponent from '@/components/PageComponent'
+import AlertMessage from '@/components/AlertMessage'
 
 import { useDispatch, useSelector } from '@/store'
-import { getContact } from '@/slices/contact'
+import { getContact, setMessageContact } from '@/slices/contact'
 
 const HomePage = () => {
   const dispatch = useDispatch()
@@ -28,12 +29,17 @@ const HomePage = () => {
     getData(newPage)
   }
 
+  const hideAlert = () => {
+    dispatch(setMessageContact(null))
+  }
+
   useEffect(() => {
     initialiceData()
   }, [])
 
   return (
     <PageComponent>
+      { stateContact.message && <AlertMessage message={stateContact.message} hide={() => hideAlert()} /> }
       <ContactList contacts={stateContact}>
         {
           stateContact.results.map(contact => (

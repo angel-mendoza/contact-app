@@ -5,7 +5,13 @@
   .app-input{
     margin-bottom: .5rem;
   }
+  .alert{
+    margin-bottom: .5rem;
+  }
   button[type=submit]{
     margin-left: 5px;
+    span{
+      margin-right: 5px;
+    }
   }
 }
