@@ -12,6 +12,8 @@ import { red } from '@mui/material/colors'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MailIcon from '@mui/icons-material/Mail'
 import PhoneIcon from '@mui/icons-material/Phone'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import BorderColorIcon from '@mui/icons-material/BorderColor'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -43,6 +45,12 @@ const ContactCard = ({ contact }) => {
         subheader="September 14, 2016"
       />
       <CardActions disableSpacing>
+        <IconButton aria-label="remove this contact">
+          <DeleteForeverIcon />
+        </IconButton>
+        <IconButton aria-label="edict this contact">
+          <BorderColorIcon />
+        </IconButton>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
