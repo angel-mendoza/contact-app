@@ -8,6 +8,7 @@ import store from '@/store'
 import Layout from '@/containers/Layout.jsx'
 
 import Home from '@/views/Home'
+import CreateContact from '@/views/CreateContact'
 import NotFound from '@/views/NotFound'
 
 import '@/styles/Global.scss'
@@ -18,12 +19,8 @@ const App = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          {/* {
-            routes.map((route, index) => (
-              <Route key={index} exact={route.exact} path={route.path} element={<route.component />} />
-            ))
-          } */}
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/create" element={<CreateContact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

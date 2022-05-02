@@ -19,7 +19,6 @@ const ContactError = () => {
         <Typography
           align="center"
           variant={mobileDevice ? 'h4' : 'h1'}
-          color="textPrimary"
         >
           An error occurred while entering your contact information.
         </Typography>

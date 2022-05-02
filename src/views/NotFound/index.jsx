@@ -21,7 +21,6 @@ const NotFoundPage = () => {
         <Typography
           align="center"
           variant={mobileDevice ? 'h4' : 'h1'}
-          color="textPrimary"
         >
           404: The page you are looking for isn’t here
         </Typography>

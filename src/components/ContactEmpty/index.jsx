@@ -21,7 +21,6 @@ const ContactEmpty = () => {
         <Typography
           align="center"
           variant={mobileDevice ? 'h4' : 'h1'}
-          color="textPrimary"
         >
           You have no contacts
         </Typography>
