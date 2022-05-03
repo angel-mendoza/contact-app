@@ -9,11 +9,11 @@ import { useDispatch, useSelector } from '@/store'
 import { setMessageContact, getOneContact } from '@/slices/contact'
 
 import PageComponent from '@/components/PageComponent'
-import ContactFormSkeleton from '@/components/ContactFormSkeleton'
-import DeleteContactForm from '@/components/DeleteContactForm'
+import ContactEditForm from '@/components/ContactForm'
 import AlertMessage from '@/components/AlertMessage'
+import ContactFormSkeleton from '@/components/ContactFormSkeleton'
 
-const DeleteContactPage = () => {
+const CreateContactPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
   const stateContact = useSelector((state) => state.contacts)
@@ -30,12 +30,12 @@ const DeleteContactPage = () => {
 
   return (
     <PageComponent>
-      { stateContact.message && <AlertMessage message={stateContact.message} hide={() => hideAlert()} /> }
+        { stateContact.message && <AlertMessage message={stateContact.message} hide={() => hideAlert()} /> }
         <Grid container direction="row" justifyContent="center">
           <Grid item xs={12} md={4} >
             <Card sx={{ minWidth: '100%' }}>
               <CardContent>
-                { stateContact.loading ? <ContactFormSkeleton /> : <DeleteContactForm /> }
+                { stateContact.loading ? <ContactFormSkeleton /> : <ContactEditForm type="edit" contact={stateContact.contactSelected} /> }
               </CardContent>
             </Card>
           </Grid>
@@ -44,4 +44,4 @@ const DeleteContactPage = () => {
   )
 }
 
-export default DeleteContactPage
+export default CreateContactPage

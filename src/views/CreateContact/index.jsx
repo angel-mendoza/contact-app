@@ -4,7 +4,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 
 import PageComponent from '@/components/PageComponent'
-import ContactCreateForm from '@/components/ContactCreateForm'
+import ContactCreateForm from '@/components/ContactForm'
 
 const CreateContactPage = () => {
   return (

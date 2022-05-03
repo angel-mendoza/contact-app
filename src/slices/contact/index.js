@@ -76,6 +76,20 @@ export const createContact = (params) => async (dispatch) => {
   }
 }
 
+export const editContact = (params) => async (dispatch) => {
+  dispatch(slice.actions.initialiceValvye())
+  dispatch(slice.actions.initLoading())
+  try {
+    const response = await API.put(`/contacts/${params.id}`, params.data)
+    dispatch(slice.actions.endLoading())
+    return response
+  } catch (err) {
+    dispatch(slice.actions.setError(formatedErrors(err)))
+    dispatch(slice.actions.endLoading())
+    return err
+  }
+}
+
 export const removeContact = (params) => async (dispatch) => {
   dispatch(slice.actions.initialiceValvye())
   try {

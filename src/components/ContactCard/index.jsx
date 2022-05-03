@@ -41,8 +41,13 @@ const ContactCard = ({ contact }) => {
   const onHandleDelete = contact => {
     dispatch(setContactSelected(contact))
     navigate(`/contact/${contact.id}/remove`)
-    // navigate('/contact-list/remove')
   }
+
+  const onHandleEdit = contact => {
+    dispatch(setContactSelected(contact))
+    navigate(`/contact/${contact.id}/edit`)
+  }
+
   return (
     <Card>
       <CardHeader
@@ -61,7 +66,10 @@ const ContactCard = ({ contact }) => {
         >
           <DeleteForeverIcon />
         </IconButton>
-        <IconButton aria-label="edict this contact">
+        <IconButton
+          onClick={() => onHandleEdit(contact)}
+          aria-label="edict this contact"
+        >
           <BorderColorIcon />
         </IconButton>
         <ExpandMore

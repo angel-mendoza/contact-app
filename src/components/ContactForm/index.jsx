@@ -14,11 +14,11 @@ import {
 } from '@mui/material'
 
 import { useDispatch, useSelector } from '@/store'
-import { createContact, setMessageContact } from '@/slices/contact'
+import { createContact, editContact, setMessageContact } from '@/slices/contact'
 
 import '@/styles/ContactCreateForm.scss'
 
-const ContactCreateForm = () => {
+const ContactCreateForm = ({ type, contact }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const stateContact = useSelector((state) => state.contacts)
@@ -26,14 +26,31 @@ const ContactCreateForm = () => {
   const theme = useTheme()
   const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: contact
+  })
 
-  const submit = async (data) => {
+  const newContact = async (data) => {
     const res = await dispatch(createContact(data))
     if (res.request.status === 200) {
-      console.log(res)
+      dispatch(setMessageContact({ severity: 'success', data: `The user ${res.data.firstName} ${res.data.lastName} was update correctly` }))
+      navigate('/')
+    }
+  }
+
+  const updateContact = async (data) => {
+    const res = await dispatch(editContact(data))
+    if (res.request.status === 200) {
       dispatch(setMessageContact({ severity: 'success', data: `The user ${res.data.firstName} ${res.data.lastName} was created correctly` }))
       navigate('/')
+    }
+  }
+
+  const submit = (data) => {
+    if (type === 'edit') {
+      updateContact({ id: contact.id, data })
+    } else {
+      newContact(data)
     }
   }
 
@@ -51,7 +68,7 @@ const ContactCreateForm = () => {
           align="center"
           variant={mobileDevice ? 'h6' : 'h4'}
         >
-          Add new contact here
+          { type === 'edit' ? 'Edit' : 'Add new' } contact here
         </Typography>
         <div>
           <TextField
@@ -133,7 +150,8 @@ const ContactCreateForm = () => {
           variant="outlined"
           type='submit'
         >
-          { stateContact.loading && <CircularProgress size={20} /> } Add contact
+          { stateContact.loading && <CircularProgress size={20} /> }
+          { type === 'edit' ? 'Edit' : 'Add' } contact
         </Button>
       </Box>
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import { generateRandonNumberBetween } from '@/utils/randomElement'
 
-const DeleteContactSkeleton = () => {
+const ContactFormSkeleton = () => {
   return (
     <div>
       <Skeleton height={30} variant="text" />
@@ -13,4 +13,4 @@ const DeleteContactSkeleton = () => {
   )
 }
 
-export default DeleteContactSkeleton
+export default ContactFormSkeleton
