@@ -19,6 +19,8 @@ import { useNavigate } from 'react-router-dom'
 import { setContactSelected } from '@/slices/contact'
 import { useDispatch } from '@/store'
 
+import { formateDate } from '@/utils/moment'
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
   return <IconButton {...other} />
@@ -57,7 +59,7 @@ const ContactCard = ({ contact }) => {
           </Avatar>
         }
         title={`${contact.firstName} ${contact.lastName}`}
-        subheader="September 14, 2016"
+        subheader={ formateDate(contact.createdAt) }
       />
       <CardActions disableSpacing>
         <IconButton
