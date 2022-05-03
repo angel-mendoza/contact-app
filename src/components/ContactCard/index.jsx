@@ -14,6 +14,10 @@ import MailIcon from '@mui/icons-material/Mail'
 import PhoneIcon from '@mui/icons-material/Phone'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
+import { useNavigate } from 'react-router-dom'
+
+import { setContactSelected } from '@/slices/contact'
+import { useDispatch } from '@/store'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -28,11 +32,17 @@ const ExpandMore = styled((props) => {
 
 const ContactCard = ({ contact }) => {
   const [expanded, setExpanded] = React.useState(false)
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
 
+  const onHandleDelete = contact => {
+    dispatch(setContactSelected(contact))
+    navigate(`/contact/${contact.id}/remove`)
+    // navigate('/contact-list/remove')
+  }
   return (
     <Card>
       <CardHeader
@@ -45,7 +55,10 @@ const ContactCard = ({ contact }) => {
         subheader="September 14, 2016"
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="remove this contact">
+        <IconButton
+          onClick={() => onHandleDelete(contact)}
+          aria-label="remove this contact"
+        >
           <DeleteForeverIcon />
         </IconButton>
         <IconButton aria-label="edict this contact">

@@ -1,6 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -37,9 +35,6 @@ const ContactCreateForm = () => {
       dispatch(setMessageContact({ severity: 'success', data: `The user ${res.data.firstName} ${res.data.lastName} was created correctly` }))
       navigate('/')
     }
-    // console.log(res.request.status)
-    // // console.log(res)
-    // console.log(stateContact)
   }
 
   return (
@@ -145,6 +140,4 @@ const ContactCreateForm = () => {
   )
 }
 
-const ContactCreateFormConected = connect()(ContactCreateForm)
-
-export default ContactCreateFormConected
+export default ContactCreateForm

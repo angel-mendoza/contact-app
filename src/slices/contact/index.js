@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   currentPage: 1,
   perPage: 0,
   results: [],
+  contactSelected: null,
   totalPages: 0,
   loading: false,
   error: null,
@@ -29,6 +30,9 @@ const slice = createSlice({
     },
     setError: (state, action) => {
       state.error = action.payload
+    },
+    setContactSelected: (state, action) => {
+      state.contactSelected = action.payload
     },
     setMessage: (state, action) => {
       state.message = action.payload
@@ -72,8 +76,24 @@ export const createContact = (params) => async (dispatch) => {
   }
 }
 
+export const getOneContact = (params) => async (dispatch) => {
+  dispatch(slice.actions.initialiceValvye())
+  dispatch(slice.actions.initLoading())
+  try {
+    const response = await API.get(`/contacts/${params}`)
+    dispatch(slice.actions.setContactSelected(response.data))
+  } catch (err) {
+    dispatch(slice.actions.setError(err))
+  }
+  dispatch(slice.actions.endLoading())
+}
+
 export const setMessageContact = (params) => (dispatch) => {
   dispatch(slice.actions.setMessage(params))
+}
+
+export const setContactSelected = (params) => (dispatch) => {
+  dispatch(slice.actions.setContactSelected(params))
 }
 
 const formatedErrors = (error) => {

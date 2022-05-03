@@ -1,0 +1,25 @@
+@import 'vars';
+
+#contact-delete-form{
+  h6, h4{
+    margin-bottom: 1rem;
+  }
+  p{
+    span{
+      font-weight: bold;
+      color: $color-danger;
+    }
+  }
+  .app-input{
+    margin-bottom: .5rem;
+  }
+  .alert{
+    margin-bottom: .5rem;
+  }
+  button{
+    margin-right: 5px;
+    span{
+      margin-right: 5px;
+    }
+  }
+}

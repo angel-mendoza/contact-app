@@ -9,6 +9,7 @@ import Layout from '@/containers/Layout.jsx'
 
 import Home from '@/views/Home'
 import CreateContact from '@/views/CreateContact'
+import DeleteContact from '@/views/DeleteContact'
 import NotFound from '@/views/NotFound'
 
 import '@/styles/Global.scss'
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/create" element={<CreateContact />} />
+          <Route exact path="/contact/:id/remove" element={<DeleteContact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
