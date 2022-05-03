@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from '@/store'
 import { setMessageContact, getOneContact } from '@/slices/contact'
 
 import PageComponent from '@/components/PageComponent'
-import ContactError from '@/components/ContactError'
 import DeleteContactSkeleton from '@/components/DeleteContactSkeleton'
 import DeleteContactForm from '@/components/DeleteContactForm'
 import AlertMessage from '@/components/AlertMessage'
@@ -29,16 +28,6 @@ const DeleteContactPage = () => {
     }
   }, [])
 
-  const showError = () => {
-    if (stateContact.error) {
-      return (
-        <Grid item xs={12}>
-          <ContactError />
-        </Grid>
-      )
-    }
-  }
-
   return (
     <PageComponent>
       { stateContact.message && <AlertMessage message={stateContact.message} hide={() => hideAlert()} /> }
@@ -46,7 +35,6 @@ const DeleteContactPage = () => {
           <Grid item xs={12} md={4} >
             <Card sx={{ minWidth: '100%' }}>
               <CardContent>
-                { showError() }
                 { stateContact.loading ? <DeleteContactSkeleton /> : <DeleteContactForm /> }
               </CardContent>
             </Card>

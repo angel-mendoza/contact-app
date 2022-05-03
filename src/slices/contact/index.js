@@ -76,6 +76,16 @@ export const createContact = (params) => async (dispatch) => {
   }
 }
 
+export const removeContact = (params) => async (dispatch) => {
+  dispatch(slice.actions.initialiceValvye())
+  try {
+    await API.delete(`/contacts/${params}`)
+    dispatch(slice.actions.setMessage({ severity: 'success', data: 'contact successfully eliminated' }))
+  } catch (err) {
+    dispatch(slice.actions.setMessage({ severity: 'error', data: 'There was an error deleting the contact, try again later.' }))
+  }
+}
+
 export const getOneContact = (params) => async (dispatch) => {
   dispatch(slice.actions.initialiceValvye())
   dispatch(slice.actions.initLoading())

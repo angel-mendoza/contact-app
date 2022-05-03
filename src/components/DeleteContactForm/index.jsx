@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 
 import { useSelector, useDispatch } from '@/store'
-import { setContactSelected } from '@/slices/contact'
+import { setContactSelected, removeContact } from '@/slices/contact'
 
 import '@/styles/DeleteContactForm.scss'
 
@@ -29,14 +29,9 @@ const DeleteContactForm = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const submit = async (data) => {
-    console.log(data)
-    // const res = await dispatch(createContact(data))
-    // if (res.request.status === 200) {
-    //   console.log(res)
-    //   dispatch(setMessageContact({ severity: 'success', data: `The user ${res.data.firstName} ${res.data.lastName} was created correctly` }))
-    //   navigate('/')
-    // }
+  const submit = async () => {
+    await dispatch(removeContact(stateContact.contactSelected.id))
+    navigate('/')
   }
 
   const goBack = () => {
